@@ -1,0 +1,12 @@
+looks like raindrops could provide people with atomic counters [maybe give an example--they don't need mutexes uh guess...]
+
+system v stuff seems to...maybe be the same as this but...with poor documentation...LOL
+
+slides don't seem to have much...except some syscall stuff, which might have semaphores, which we already have.
+
+
+https://github.com/knu/ruby-mmap might actually be useful to people...maybe...guy's seems to be like the only one LOL.  some mmaps seems to be just for 'awesome' file access: http://www.ruby-forum.com/topic/99984 apparently windows has its on mmap method/gem [same link] it must be speedy or something, or allow for inserting into a file more easily or something: http://snippets.dzone.com/posts/show/5487
+
+todo: drb example
+
+
