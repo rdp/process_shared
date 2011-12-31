@@ -9,4 +9,34 @@ https://github.com/knu/ruby-mmap might actually be useful to people...maybe...gu
 
 todo: drb example
 
+mention flocking: http://blog.vmfarms.com/2011/03/cross-process-locking-and.html?showComment=1325347639313#c4215938866291365110  also hints that some day we may want to supply access to named semaphores for super-cross process cross language locking LOL
 
+do we support message queues? do we care/want to? http://semanchuk.com/philip/posix_ipc/
+
+posix and system v seem to be competitor cross processes [oh and doze is probably different too]
+
+pipe example 
+
+mem = ProcessShared::SharedMemory.new(:int)  # extends FFI::Pointer -> SharedInt
+
+maybe just instructions on 
+Mutex = ProcessShared::Mutex [?]
+
+can we have an array of shared strings? I guess now, since we can just use a marshalled shared memory for the same I guess...or you could have an array of shared memory into which you write strings [maybe a shared marshal array would be helpful then?]
+
+appears multiprocessing's Queue is "just" a queue that uses a pipe for sending data back and forth
+
+maybe also add a pipe helper "get object" "receive object" from this pipe
+  monitormixin or just a parameter?A
+
+appears multiprocessing has an option to start a manager "process" for certain objects...so client's can access queue's remotely? huh?
+
+may eventually want a real Pool object so that you can call do_async on it
+
+SynchronizedArrayAccess too...
+
+they have an array that allows you to return values that are each A
+
+maybe their Manager is instead of a Drb base thread?
+
+appears Python's windows support is "load normally, skipping $0 == __FILE__ 's, then call the method" then...calling static methods?
