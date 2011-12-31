@@ -11,7 +11,7 @@ todo: drb example
 
 mention flocking: http://blog.vmfarms.com/2011/03/cross-process-locking-and.html?showComment=1325347639313#c4215938866291365110  also hints that some day we may want to supply access to named semaphores for super-cross process cross language locking LOL
 
-do we support message queues? do we care/want to? http://semanchuk.com/philip/posix_ipc/
+do we support message queues? do we care/want to? http://semanchuk.com/philip/posix_ipc/ [no]
 
 mention "one easy way to share memory is just new it up before forking--all of them will have their own private copy of the data, so they can change it, etc"
 
@@ -52,3 +52,17 @@ TODO wrapped pipe
   that is also multi process synchronized LOL indeed scawah otherwise!
 
 http://parallelforkmgr.rubyforge.org  is like our own Pool...
+
+link to beanstalk LOL/ postgres q
+
+http://blog.radioni.ca/comments.php?id=232_0_1_0_C clever "wait for any child, fork a new one" (guess that's not quite a pool, though, but hey)
+
+forkoff does not do pool's, just local pool's that keep full, or at least says it does anyway...
+
+Queue with Marshalled strings saved to somewhere I guess needs a size param...
+
+he was going to do SharedMemoryArray(:int, 200) # with or without synchronized access...I think that would be good for now...I think so...synchronized reads [and writes can't interrupt a read] TODO
+
+propaganda:
+  http://stackoverflow.com/questions/710785/working-with-multiple-processes-in-ruby
+  http://stackoverflow.com/questions/855805/please-introduce-a-multi-processing-library-in-perl-or-ruby
