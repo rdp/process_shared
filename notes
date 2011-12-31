@@ -13,9 +13,13 @@ mention flocking: http://blog.vmfarms.com/2011/03/cross-process-locking-and.html
 
 do we support message queues? do we care/want to? http://semanchuk.com/philip/posix_ipc/
 
+mention "one easy way to share memory is just new it up before forking--all of them will have their own private copy of the data, so they can change it, etc"
+
 posix and system v seem to be competitor cross processes [oh and doze is probably different too]
 
 pipe example 
+
+I guess ipc queue's just send back and forth "bytes" of x length...
 
 mem = ProcessShared::SharedMemory.new(:int)  # extends FFI::Pointer -> SharedInt
 
@@ -29,14 +33,22 @@ appears multiprocessing's Queue is "just" a queue that uses a pipe for sending d
 maybe also add a pipe helper "get object" "receive object" from this pipe
   monitormixin or just a parameter?A
 
-appears multiprocessing has an option to start a manager "process" for certain objects...so client's can access queue's remotely? huh?
+appears multiprocessing has an option to start a manager "process" for certain objects...so client's can access queue's remotely? huh? does this replace Drb's server thread perhaps? this might be nice as a "don't have to worry about it drb" though I guess...hmm...meh they can just use the parent for it for now...oh wait they can just start it, then fork and close the socket in the parent [?]
+
+maybe manager is a way for Drb to be shared cross machine?
+  LODO: an example demo of "use this mutex across machines, too!"
 
 may eventually want a real Pool object so that you can call do_async on it
 
 SynchronizedArrayAccess too...
 
+TODO fake array example LOL
+
 they have an array that allows you to return values that are each A
 
-maybe their Manager is instead of a Drb base thread?
-
 appears Python's windows support is "load normally, skipping $0 == __FILE__ 's, then call the method" then...calling static methods?
+
+TODO wrapped pipe 
+  that is also multi process synchronized LOL indeed scawah otherwise!
+
+http://parallelforkmgr.rubyforge.org  is like our own Pool...
