@@ -63,6 +63,12 @@ Queue with Marshalled strings saved to somewhere I guess needs a size param...
 
 he was going to do SharedMemoryArray(:int, 200) # with or without synchronized access...I think that would be good for now...I think so...synchronized reads [and writes can't interrupt a read] TODO
 
+Todo: double check if/or want things like:
+  a = WorkerThread.new(F, :method_name, arg1, arg2)
+    and then a pool of those, to avoid re-forking uh guess.
+  and do we have a do_now and do_async somehow for existing pool forked threads?
+
+
 propaganda:
   http://stackoverflow.com/questions/710785/working-with-multiple-processes-in-ruby
   http://stackoverflow.com/questions/855805/please-introduce-a-multi-processing-library-in-perl-or-ruby
