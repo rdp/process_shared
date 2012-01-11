@@ -6,9 +6,13 @@ The Queue with "10 string abble slots"
 The ObjectTransferPipe [fully double mutexed].
 
 Docu's mentioned
+  ConditionVariable docu
 
 a = SharedProcess::SharedInt.new( +- default true I think...)
   make sure it doesn't accept bignum's
+
+experiment with ConditionVariable
+get it working on mac [?]
 
 = notes/maybe =
 
