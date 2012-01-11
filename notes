@@ -1,3 +1,26 @@
+= to do do =
+
+ask people what they want...
+
+The Queue with "10 string abble slots"
+The ObjectTransferPipe [fully double mutexed].
+
+Docu's mentioned
+
+a = SharedProcess::SharedInt.new( +- default true I think...)
+  make sure it doesn't accept bignum's
+
+= notes/maybe =
+
+The "real" pool that can take things like pool.send(Q, :yoyo, arg1, arg2)
+  would this provide much benefit over parallel fork mgr though?
+
+the overrider :P
+
+SharedArray with mutex? mutex per index?
+
+The "amazing queue" with its own worker process in the background.
+
 looks like raindrops could provide people with atomic counters [maybe give an example--they don't need mutexes uh guess...]
 
 system v stuff seems to...maybe be the same as this but...with poor documentation...LOL
