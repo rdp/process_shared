@@ -16,8 +16,18 @@ get it working on mac [?]
 
 = notes/maybe =
 
-The "real" pool that can take things like pool.send(Q, :yoyo, arg1, arg2)
+add something to Enumerable like
+[1,2,3].par(group).each{|f| puts f} ??
+
+
+"convert" the FFI to C based code only. speedy speed!
+
+The "real" pool that can take things like pool.send(Q, :yoyo, arg1, arg2) or possibly Q.using_pool(instance).yoyo(arg1, arg2) or something more exotic?
   would this provide much benefit over parallel fork mgr though?
+  two version of this: one has a "manager process" for arbitrarily long queues, queue element sizes.
+    the other has "size 10" and fixed element sizes, and blocks when you fill them all up, is just synchronized with child processes
+
+create a "block marshaller"
 
 the overrider :P
 
