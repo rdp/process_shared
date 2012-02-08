@@ -1,7 +1,5 @@
 = to do do =
 
-ask people what they want...
-
 The Queue with "10 string abble slots"
 The ObjectTransferPipe [fully double mutexed].
 
@@ -10,9 +8,6 @@ Docu's mentioned
 
 a = SharedProcess::SharedInt.new( +- default true I think...)
   make sure it doesn't accept bignum's
-
-experiment with ConditionVariable
-get it working on mac [?]
 
 mention REE/TRUNK for copy on write friendly GC
 
