@@ -1,6 +1,6 @@
 = to do do =
 
-The Queue with "10 string abble slots"
+The simple Queue with "10 string abble slots"
 The ObjectTransferPipe [fully double mutexed].
 
 Docu's mentioned
@@ -11,13 +11,34 @@ a = SharedProcess::SharedInt.new( +- default true I think...)
 
 mention REE/TRUNK for copy on write friendly GC
 
+
 = notes/maybe =
+
+Ok the real only use cases:
+
+10.times { fork { while(b = queue.pop); process(b); growing_shared_array.push(answer) }
+
+a = Mutex.new
+socket = ObjectTransferSocket.new
+fork {
+ get = socket.recv
+ got = socket.send('abc')
+}
+socket.send('hello_there')
+p socket.recv
+
+maybe something like
+q = ObjectTransferQueue.new
+q.send 'anything'
+
+but that's way off a bit...I think so anyway...
+
 
 mention
  https://github.com/grosser/parallel
 
-add something to Enumerable like
-[1,2,3].par(group).each{|f| puts f} ??
+create my own:
+  [1,2,3].par(group).each{|f| puts f} # always each LOL
 
 
 "convert" the FFI to C based code only. speedy speed!
