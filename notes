@@ -11,6 +11,7 @@ a = SharedProcess::SharedInt.new( +- default true I think...)
 
 mention REE/TRUNK for copy on write friendly GC
 
+note why this is so awesome/useful (overcome's MRI's deficiencies in this area)
 
 = notes/maybe =
 
