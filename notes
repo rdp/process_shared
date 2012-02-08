@@ -14,7 +14,12 @@ a = SharedProcess::SharedInt.new( +- default true I think...)
 experiment with ConditionVariable
 get it working on mac [?]
 
+mention REE/TRUNK for copy on write friendly GC
+
 = notes/maybe =
+
+mention
+ https://github.com/grosser/parallel
 
 add something to Enumerable like
 [1,2,3].par(group).each{|f| puts f} ??
