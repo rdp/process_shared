@@ -2,14 +2,14 @@ require 'spec_helper'
 require 'process_shared'
 
 module ProcessShared
-  describe Mutex do
+  describe Monitor do
 
     include LockBehavior
 
     before :each do
-      @lock = Mutex.new
+      @lock = Monitor.new
     end
-    
+
     it 'raises exception when unlocked by other process' do
       pid = Kernel.fork do
         @lock.lock
@@ -24,9 +24,10 @@ module ProcessShared
       ::Process.wait(pid)
     end
 
-    it 'raises exception when locked twice by same process' do
+    it 'raises nothing with nested lock' do
       @lock.lock
-      proc { @lock.lock }.must_raise(ProcessError)
+      @lock.lock
+      @lock.unlock
       @lock.unlock
     end
   end

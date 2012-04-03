@@ -1,3 +1,5 @@
+require 'process_shared'
+
 module ProcessShared
   class SharedArray < SharedMemory
     include Enumerable

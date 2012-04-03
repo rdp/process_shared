@@ -1,11 +1,29 @@
 require 'spec_helper'
 
 require 'ffi'
-require 'process_shared/semaphore'
-require 'process_shared/shared_memory'
+require 'process_shared'
 
 module ProcessShared
   describe Semaphore do
+
+    describe 'As Lock' do
+
+      include LockBehavior
+
+      before :each do
+        @lock = Semaphore.new
+        class << @lock
+          alias_method :lock, :wait
+          alias_method :unlock, :post
+        end
+      end
+
+      after :each do
+        @lock.close
+      end
+
+    end
+
     it 'coordinates access to shared object' do
       nprocs = 4               # number of processes
       nincrs = 1000            # each process increments nincrs times
@@ -16,7 +34,7 @@ module ProcessShared
           begin
             val = mem.get_int(0)
             # ensure other procs have a chance to interfere
-            sleep 0.001 if rand(100) == 0
+            sleep 0.002 if rand(50) == 0
             mem.put_int(0, val + 1)
           rescue => e
             "#{Process.pid} die'ing because #{e}"
@@ -58,16 +76,18 @@ module ProcessShared
     end
 
     describe '#post and #wait' do
-      it 'increments and decrements the value' do
-        Semaphore.open(0) do |sem|
-          10.times do |i|
-            sem.post
-            sem.value.must_equal(i + 1)
-          end
+      unless FFI::Platform.mac?
+        it 'increments and decrements the value' do
+          Semaphore.open(0) do |sem|
+            10.times do |i|
+              sem.post
+              sem.value.must_equal(i + 1)
+            end
 
-          10.times do |i|
-            sem.wait
-            sem.value.must_equal(10 - i - 1)
+            10.times do |i|
+              sem.wait
+              sem.value.must_equal(10 - i - 1)
+            end
           end
         end
       end
@@ -98,14 +118,13 @@ module ProcessShared
 
       it 'returns after waiting if another processes posts' do
         Semaphore.open(0) do |sem|
-          start = Time.now.to_f
-
           pid = fork do
             sleep 0.01
             sem.post
             Kernel.exit!
           end
 
+          start = Time.now.to_f
           sem.try_wait(0.1)
           (Time.now.to_f - start).must be_lt(0.1)
 
