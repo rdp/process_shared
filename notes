@@ -1,19 +1,30 @@
 = to do do =
 
-The simple Queue with "10 string abble slots"
-The ObjectTransferPipe [fully double mutexed].
+Simple Queue with "10 string abble slots"
 
-Docu's mentioned
+The ObjectTransferPipe [fully double mutexed].
+My own marshalling I guess <sigh>.
+
   ConditionVariable docu
 
-a = SharedProcess::SharedInt.new( +- default true I think...)
-  make sure it doesn't accept bignum's
 
 mention REE/TRUNK for copy on write friendly GC
 
 note why this is so awesome/useful (overcome's MRI's deficiencies in this area)
 
+
+Research python "real uses"
+
 = notes/maybe =
+a = SharedProcess::SharedInt.new( +- default true I think...)
+  make sure it doesn't accept bignum's
+
+show how to use a "queue with Drb attached to it too"
+
+super simple "spawn me up 5 processes in these boxes, with these parameters (drb, pointing back to me)" LOL
+
+a = SharedInt(:max => 30)
+a << 3
 
 Ok the real only use cases:
 
