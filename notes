@@ -1,21 +1,66 @@
 = to do do =
 
-Simple Queue with "10 string abble slots"
+Simple shared Queue with "10 string abble slots"
 
 The ObjectTransferPipe [fully double mutexed].
-My own marshalling I guess <sigh>.
-
-  ConditionVariable docu
-
-
-mention REE/TRUNK for copy on write friendly GC
+My own marshalling I guess <sigh>. from drb
 
 note why this is so awesome/useful (overcome's MRI's deficiencies in this area)
 
-
 Research python "real uses"
 
+Some type of pool sounds "good"
+
+SharedArray.new(:max => 10)
+
+= high maybe =
+
+Pool(10) do |input|
+
+end
+
 = notes/maybe =
+
+
+a = Queue.new([1,2,3,], :processes => 32) {|input| # doesn't have to copy that...maybe just coordinate the "next spot" location with a mutex...shared int...
+
+}
+
+definitely...sometime...probably...want the QueueInItsOwnProcessSoItCanBufferForYou
+
+buffer the input from the Q LOL "prefetch"
+
+send_raw_string recv_raw_string
+
+pmin, pmax, preduce LOL (and some magical fork/join wrapper 4 it LOL)
+
+Maybe windows does it by avoiding/wrapping the main script, then calling "process, arg1, arg2" ...and smartly serializing the queues...
+
+mention "rabbitmq" and other ways to distribute. zeromq/redis
+
+Process.new(:dont_start_yet => true)
+
+do something cool with iterators "returns an iterator while it works" :P
+
+how in the world does it do
+
+Process.new(:start_method, queue1, queue2) on windows?  It must pickle it somehow...but what? Seriously what? huh, in doze?? [just uses serialize for the instance, remembers what it is...]
+
+easy split and map: like forkoff or lazy:
+
+local_var = ary.in_sub_processes(10).each{|n|
+
+  shared_array << n *33
+}.map{|n| n*34}
+
+make it jruby compatible? :)
+
+
+a forkoff "equivalent" that just dies, doesn't have to pass values back, just assign them somehow...maybe serialize...
+  maybe "after join it does a big unserialize" or "as it comes in, does an unserliaize, pass you back that"
+
+"smarter" local serialized array:  when it hasn't been updated, don't re-unserialize :P
+
 a = SharedProcess::SharedInt.new( +- default true I think...)
   make sure it doesn't accept bignum's
 
