@@ -18,6 +18,8 @@ pool.map, pool.be able to process input (the above)
 
 = notes/maybe =
 
+pool.parallel.map.map.reject.select.map LOL that might be slick though.
+
 note: use drb if you want multi-machine
 note: use resque "instead"
 
