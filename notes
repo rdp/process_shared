@@ -2,16 +2,8 @@
 
 Simple shared Queue with "10 string abble slots"
 
-The ObjectTransferPipe [fully double mutexed].
-My own marshalling I guess <sigh>. from drb
-
 note why this is so awesome/useful (overcome's MRI's deficiencies in this area)
-
-Research python "real uses"
-
-Some type of pool sounds "good"
-
-SharedArray.new(:max => 10)
+  more parallel, avoid concurrency issues/problems
 
 = high maybe =
 
@@ -19,7 +11,21 @@ Pool(10) do |input|
 
 end
 
+Some type of pool sounds "good"
+
+pool.map, pool.be able to process input (the above)
+  local marshalling for the map, maybe use the simple shared queue for it
+
 = notes/maybe =
+
+note: use drb if you want multi-machine
+note: use resque "instead"
+
+
+SharedArray.new(:max => 10)
+
+The ObjectTransferPipe [fully double mutexed].
+My own marshalling I guess <sigh>. from drb
 
 
 a = Queue.new([1,2,3,], :processes => 32) {|input| # doesn't have to copy that...maybe just coordinate the "next spot" location with a mutex...shared int...
