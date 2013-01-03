@@ -97,3 +97,8 @@ Install the gem with:
   explicitly close and release resources?
 * Test semantics of crashing processes who still hold locks, etc.
 * Is SharedArray with Enumerable mixing sufficient Array-like interface?
+
+== Related
+
+Another way to distributed load is via shared queue (doesn't help you with RAM, 
+and may add an extra transfer overhead, but is another option).
